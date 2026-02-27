@@ -5,7 +5,11 @@ export default defineConfig({
   timeout: 30_000,
   fullyParallel: true,
   retries: 0,
-  reporter: [['list'], ['html', { open: 'never' }]],
+    reporter: [['html', { open: 'never' }],
+        ['junit', { outputFile: 'junit-report/jest-junit.xml' }],
+        ['list'],
+        ['json', { outputFile: 'test-results.json' }],
+    ],
   use: {
     baseURL: 'https://playwright.dev',
     screenshot: 'on',
