@@ -4,6 +4,30 @@ on:
   push:
     branches: [main, master]
 
+  workflow_dispatch:
+    inputs:
+      environment:
+          type: choice
+          description: 'Choose the environment to run the tests'
+          required: true
+          default: 'dev'
+          options:
+            - 'dev'
+            - 'staging'
+      tags:
+          description: 'Set any tags like: "@smoke" , "@222333", "@fast|@slow"'
+          required: false
+          default: ''
+      trace:
+          type: choice
+          description: 'Choose trace option: on / off / retain-on-failure'
+          required: false
+          default: 'off'
+          options:
+            - 'retain-on-failure'
+            - 'on'
+            - 'off'
+
 env:
   NODE_ENV: 'test'
 jobs:
