@@ -30,6 +30,11 @@ jobs:
 
   Run_second_job:
     runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -40,7 +45,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Install browsers for Playwright
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
       - name: Run Playwright tests
         run: npx playwright test
       - name: Upload playwright report artifacts
